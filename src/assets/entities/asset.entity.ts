@@ -9,17 +9,17 @@ export class Asset {
   @Prop({ default: () => crypto.randomUUID() })
   _id: string;
 
-  @Prop()
+  @Prop({ unique: true, index: true })
   name: string;
 
-  @Prop()
+  @Prop({ unique: true, index: true })
   symbol: string;
 
   @Prop()
   image: string;
 
   @Prop()
-  price: number;
+  price: string;
 
   @Prop()
   createdAt!: Date;
