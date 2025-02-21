@@ -42,7 +42,7 @@ export class Order {
   type: OrderType;
 
   @Prop()
-  order: OrderStatus;
+  status: OrderStatus;
 
   @Prop()
   createdAt!: Date;
