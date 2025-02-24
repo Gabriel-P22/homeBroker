@@ -12,7 +12,7 @@ import { Asset, AssetDocument } from 'src/assets/entities/asset.entity';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { AssetDaily } from 'src/assets/entities/asset-daily.entity';
 import { WalletAsset } from 'src/wallets/entities/wallet-asset.entity';
-import { Wallet } from 'src/wallets/entities/wallet.entity';
+import { Wallet, WalletDocument } from 'src/wallets/entities/wallet.entity';
 import { Trade } from './entities/trade.entity';
 import * as kafkaLib from '@confluentinc/kafka-javascript';
 
@@ -168,9 +168,13 @@ export class OrdersService implements OnModuleInit {
             { session },
           );
           const walletAsset = walletAssetDocs[0];
-          const wallet = await this.walletSchema.findById(order.wallet);
-          wallet!.assets.push(walletAsset._id);
-          await wallet!.save({ session });
+
+          const wallet = (await this.walletSchema.findById(
+            order.wallet,
+          )) as WalletDocument & { assets: string[] };
+
+          wallet.assets.push(walletAsset._id);
+          await wallet.save({ session });
         }
       }
 

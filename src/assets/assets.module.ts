@@ -20,5 +20,6 @@ import { AssetDaily, AssetDailySchema } from './entities/asset-daily.entity';
   ],
   controllers: [AssetsController, AssetDailyController],
   providers: [AssetsService, AssetsGateway, AssetDailyService],
+  exports: [AssetsService],
 })
 export class AssetsModule { }

@@ -48,5 +48,6 @@ import * as kafkaLib from '@confluentinc/kafka-javascript';
       },
     },
   ],
+  exports: [OrdersService],
 })
 export class OrdersModule { }
