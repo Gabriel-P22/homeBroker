@@ -4,7 +4,7 @@ import { Asset } from './asset.entity';
 
 export type AssetDailyDocument = HydratedDocument<AssetDaily>;
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, optimisticConcurrency: true })
 export class AssetDaily {
   @Prop({ default: () => crypto.randomUUID() })
   _id: string;
